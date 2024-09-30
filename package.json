@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@nextui-org/button": "^2.0.38",
+    "@nextui-org/card": "^2.0.34",
     "@nextui-org/link": "^2.0.35",
+    "@nextui-org/navbar": "^2.0.37",
     "@nextui-org/system": "^2.2.6",
     "@nextui-org/theme": "^2.2.11",
     "framer-motion": "^11.9.0",
