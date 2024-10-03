@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@nextui-org/button": "^2.0.38",
     "@nextui-org/card": "^2.0.34",
+    "@nextui-org/input": "^2.2.5",
     "@nextui-org/link": "^2.0.35",
     "@nextui-org/navbar": "^2.0.37",
     "@nextui-org/system": "^2.2.6",
@@ -18,7 +20,9 @@
     "framer-motion": "^11.9.0",
     "next": "14.2.11",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "valibot": "^1.0.0-beta.0"
   },
   "devDependencies": {
     "typescript": "^5.3.0",
