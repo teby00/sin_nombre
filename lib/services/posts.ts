@@ -10,16 +10,25 @@ export async function getPosts(): Promise<{
   data: Post[] | null;
   error: string | null;
 }> {
-  const response = await fetch(process.env.BACKEND_URL! + 'publicaciones/');
-  if (!response.ok) {
+  try {
+    const response = await fetch(process.env.BACKEND_URL! + 'publicaciones/', {
+      next: { tags: ['posts'] },
+    });
+    if (!response.ok) {
+      return {
+        data: null,
+        error: 'Error inesperado.',
+      };
+    }
+    const res = await response.json();
+    return {
+      data: res,
+      error: null,
+    };
+  } catch (e) {
     return {
       data: null,
-      error: 'Error inesperado.',
+      error: 'Error al conectar con el servidor.',
     };
   }
-  const res = await response.json();
-  return {
-    data: res,
-    error: null,
-  };
 }

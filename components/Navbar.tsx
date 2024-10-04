@@ -1,7 +1,8 @@
 'use client';
 
-import { AcmeLogo } from '@/components/ui/icons';
 import { useState } from 'react';
+
+import { AcmeLogo } from '@/components/ui/icons';
 import {
   Navbar,
   NavbarBrand,
@@ -11,13 +12,33 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from '@nextui-org/navbar';
-import Link from 'next/link';
 import { Button } from '@nextui-org/button';
+import { MessageCircleQuestion } from 'lucide-react';
+
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function Nav() {
+import { logout } from '@/lib/actions/navbar';
+
+interface Props {
+  session: {
+    isAuth: boolean;
+    rol: string | null;
+    isAdmin: boolean;
+  };
+}
+
+export default function Nav({ session }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePathname();
+
+  if (path === '/login' || path === '/register') {
+    return;
+  }
+
+  const handleLogOuth = async () => {
+    await logout();
+  };
 
   const menuItems = [
     'Profile',
@@ -72,14 +93,36 @@ export default function Nav() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/login">Iniciar Sesión</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="/register" variant="flat">
-            Registro
-          </Button>
-        </NavbarItem>
+        {session.isAuth ? (
+          <>
+            <NavbarItem className="text-sm hidden lg:flex">
+              <Button onClick={handleLogOuth} color="primary" variant="light">
+                Cerrar Sesión
+              </Button>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                as={Link}
+                color="primary"
+                href="/register"
+                variant="shadow"
+              >
+                <MessageCircleQuestion />
+              </Button>
+            </NavbarItem>
+          </>
+        ) : (
+          <>
+            <NavbarItem className="hidden lg:flex">
+              <Link href="/login">Iniciar Sesión</Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button as={Link} color="primary" href="/register" variant="flat">
+                Registro
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (

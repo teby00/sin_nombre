@@ -1,3 +1,4 @@
+import PostForm from '@/components/PostForm';
 import { getPosts } from '@/lib/services/posts';
 import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 import { MessageCircle, Clock } from 'lucide-react';
@@ -6,6 +7,7 @@ export default async function Home() {
   const { data, error } = await getPosts();
   return (
     <div className="flex flex-col items-center min-h-screen pt-8 gap-8">
+      <PostForm />
       {data?.map((post) => (
         <Card isHoverable key={post.id} className="w-[600px] cursor-pointer">
           <CardHeader className="font-semibold">
@@ -24,6 +26,7 @@ export default async function Home() {
           </CardFooter>
         </Card>
       ))}
+      {error && <p className="text-danger-500">{error}</p>}
     </div>
   );
 }
