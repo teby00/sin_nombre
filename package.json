@@ -18,6 +18,8 @@
     "@nextui-org/system": "^2.2.6",
     "@nextui-org/theme": "^2.2.11",
     "framer-motion": "^11.9.0",
+    "jose": "^5.9.3",
+    "lucide-react": "^0.447.0",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",
