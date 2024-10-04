@@ -10,3 +10,10 @@ export const LoginSchema = object({
     nonEmpty('La contraseña es requerida')
   ),
 });
+
+export const PostSchema = object({
+  contenido: pipe(
+    string('El contenido es requerido'),
+    nonEmpty('El contenido es requerido')
+  ),
+});

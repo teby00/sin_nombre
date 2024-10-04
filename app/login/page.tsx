@@ -1,3 +1,4 @@
+import { Link } from '@nextui-org/link';
 import LoginForm from './client.form';
 
 export default async function Login() {
@@ -11,6 +12,12 @@ export default async function Login() {
           Iniciar Sesión
         </h1>
         <LoginForm />
+        <span className="flex justify-between items-center mt-4 gap-2 text-sm">
+          <p>No tienes cuenta?</p>
+          <Link href="/register" className="cursor-pointer">
+            Regístrate
+          </Link>
+        </span>
       </div>
     </div>
   );
