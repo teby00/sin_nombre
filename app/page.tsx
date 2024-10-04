@@ -1,14 +1,29 @@
-import { Button } from '@nextui-org/button';
-import { Link } from '@nextui-org/link';
+import { getPosts } from '@/lib/services/posts';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
+import { MessageCircle, Clock } from 'lucide-react';
 
-export default function Home() {
+export default async function Home() {
+  const { data, error } = await getPosts();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Button as={Link} href="/blog" color="primary" variant="shadow">
-          Blog
-        </Button>
-      </main>
+    <div className="flex flex-col items-center min-h-screen pt-8 gap-8">
+      {data?.map((post) => (
+        <Card isHoverable key={post.id} className="w-[600px] cursor-pointer">
+          <CardHeader className="font-semibold">
+            {post.usuario__username}
+          </CardHeader>
+          <CardBody>{post.contenido}</CardBody>
+          <CardFooter className="text-default-500 gap-4">
+            <span className="flex gap-1">
+              <Clock size={24} />
+              <time>{post.fecha}</time>
+            </span>
+
+            <span className="flex gap-1">
+              <MessageCircle size={24} /> {post.comentarios}
+            </span>
+          </CardFooter>
+        </Card>
+      ))}
     </div>
   );
 }

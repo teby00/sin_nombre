@@ -76,8 +76,8 @@ export default function Nav() {
           <Link href="/login">Iniciar Sesión</Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          <Button as={Link} color="primary" href="/register" variant="flat">
+            Registro
           </Button>
         </NavbarItem>
       </NavbarContent>
