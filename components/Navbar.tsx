@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { AcmeLogo } from '@/components/ui/icons';
 import {
   Navbar,
   NavbarBrand,
@@ -13,7 +12,7 @@ import {
   NavbarMenuToggle,
 } from '@nextui-org/navbar';
 import { Button } from '@nextui-org/button';
-import { MessageCircleQuestion } from 'lucide-react';
+import { MessageCircleQuestion, Bot, MonitorCog } from 'lucide-react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -25,6 +24,7 @@ interface Props {
     isAuth: boolean;
     rol: string | null;
     isAdmin: boolean;
+    isStaff: boolean;
   };
 }
 
@@ -61,8 +61,9 @@ export default function Nav({ session }: Props) {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <Link href="/">
+            <Bot size={36} />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -100,16 +101,31 @@ export default function Nav({ session }: Props) {
                 Cerrar Sesión
               </Button>
             </NavbarItem>
-            <NavbarItem>
-              <Button
-                as={Link}
-                color="primary"
-                href="/register"
-                variant="shadow"
-              >
-                <MessageCircleQuestion />
-              </Button>
-            </NavbarItem>
+            {session.isStaff ? (
+              <NavbarItem>
+                <Button
+                  as={Link}
+                  isIconOnly
+                  color="primary"
+                  href="/dashboard"
+                  variant="shadow"
+                >
+                  <MonitorCog />
+                </Button>
+              </NavbarItem>
+            ) : (
+              <NavbarItem>
+                <Button
+                  as={Link}
+                  isIconOnly
+                  color="primary"
+                  href="/register"
+                  variant="shadow"
+                >
+                  <MessageCircleQuestion />
+                </Button>
+              </NavbarItem>
+            )}
           </>
         ) : (
           <>
