@@ -5,9 +5,9 @@ export default async function Blog() {
   return (
     <div className="w-full lg:px-16 mt-12">
       <div className="text-center">
-        <h1 className="mb-2 font-bold text-4xl">NextUI Latest Updates</h1>
+        <h1 className="mb-2 font-bold text-4xl">Últimas noticias</h1>
         <h5 className="text-default-500 text-lg">
-          All the latest news about NextUI.
+          Mantente al tanto de las últimas noticias de ciberseguridad.
         </h5>
       </div>
       <div className="mt-10 grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
