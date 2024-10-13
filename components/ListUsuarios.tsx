@@ -66,7 +66,7 @@ export default function ListUsuarios({ data }: { data: Usuario[] }) {
                 type="button"
                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
               >
-                <Tooltip content="Edit user">
+                <Tooltip content="Editar usuario">
                   <Edit />
                 </Tooltip>
               </button>
@@ -86,7 +86,7 @@ export default function ListUsuarios({ data }: { data: Usuario[] }) {
   }, []);
   return (
     <>
-      <Table aria-label="Example table with dynamic content">
+      <Table aria-label="Tabla de usuarios">
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn

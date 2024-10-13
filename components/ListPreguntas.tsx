@@ -45,7 +45,7 @@ export default function ListPreguntas({ data }: { data: PreguntaFrecuente[] }) {
                 type="button"
                 className="text-lg text-default-400 cursor-pointer active:opacity-50"
               >
-                <Tooltip content="Edit user">
+                <Tooltip content="Editar pregunta">
                   <Edit />
                 </Tooltip>
               </button>

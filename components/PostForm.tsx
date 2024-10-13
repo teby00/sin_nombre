@@ -35,8 +35,15 @@ export default function PostForm() {
     dataForm: InferInput<typeof OnlyContenidoSchema>
   ): Promise<void> => {
     try {
+      const formData = new FormData();
+      formData.append('publicacion', JSON.stringify(dataForm));
+
+      if (images) {
+        Array.from(images).forEach((file) => formData.append('image', file));
+      }
+
       setIsLoading(true);
-      const error = await createPost(dataForm);
+      const error = await createPost(formData);
       if (error) {
         toast.error(error);
       }
