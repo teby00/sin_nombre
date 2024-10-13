@@ -4,10 +4,15 @@ interface Usuario {
   rol: string;
 }
 
+export interface Imagen {
+  imagen: string;
+}
+
 interface Post {
   id: number;
   contenido: string;
   fecha: string;
+  imagen: Imagen[] | null;
   num_comentarios: number;
   usuario: Usuario;
 }

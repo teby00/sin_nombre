@@ -17,6 +17,13 @@ export async function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-user-id', verifyToken.id);
   requestHeaders.set('x-user-rol', verifyToken.rol);
+
+  if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    if (verifyToken.rol !== 'ADMIN' && verifyToken.rol !== 'MODERADOR') {
+      return NextResponse.redirect(new URL('/404', request.url));
+    }
+  }
+
   return NextResponse.next({
     request: {
       headers: requestHeaders,

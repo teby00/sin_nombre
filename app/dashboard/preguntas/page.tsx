@@ -2,7 +2,7 @@ import ListPreguntas from '@/components/ListPreguntas';
 import ModalPreguntas from '@/components/ModalPreguntas';
 import { getPreguntas } from '@/lib/services/dashboard';
 import { Button } from '@nextui-org/button';
-import { UserPlus2 } from 'lucide-react';
+import { CirclePlus } from 'lucide-react';
 
 export default async function DashboardPreguntas() {
   const { data, error } = await getPreguntas();
@@ -14,7 +14,7 @@ export default async function DashboardPreguntas() {
           <Button
             color="primary"
             variant="shadow"
-            startContent={<UserPlus2 size={20} />}
+            startContent={<CirclePlus size={20} />}
           >
             Agregar
           </Button>
