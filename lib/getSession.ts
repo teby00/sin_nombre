@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 
 export function getSession() {
   const headersList = headers();
+  const id = headersList.get('x-user-id');
   const rol = headersList.get('x-user-rol');
   const isAdmin = rol === 'ADMIN';
   const isModerador = rol === 'MODERADOR';
@@ -9,6 +10,7 @@ export function getSession() {
   const isAuth = !!rol;
 
   return {
+    id,
     rol,
     isAdmin,
     isStaff,

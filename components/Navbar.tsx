@@ -32,7 +32,11 @@ export default function Nav({ session }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const path = usePathname();
 
-  if (path === '/login' || path === '/register') {
+  if (
+    path === '/login' ||
+    path === '/register' ||
+    path.startsWith('/dashboard')
+  ) {
     return;
   }
 

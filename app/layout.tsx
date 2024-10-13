@@ -27,13 +27,16 @@ export default function RootLayout({
           toastOptions={{
             unstyled: true,
             classNames: {
-              toast:
+              success:
+                'bg-[#18181b] rounded-lg text-success p-4 flex items-center gap-2 border border-success-400 shadow-sm',
+              error:
                 'bg-[#18181b] rounded-lg text-danger p-4 flex items-center gap-2 border border-danger-400 shadow-sm',
             },
           }}
         />
         <Navbar session={session} />
-        <main className="relative container mx-auto max-w-7xl z-10 px-6 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow">
+        {/* className="relative container mx-auto max-w-7xl z-10 px-6 min-h-[calc(100vh_-_64px_-_108px)] mb-12 flex-grow" */}
+        <main className="relative z-10 container flex-grow">
           <Providers>{children}</Providers>
         </main>
         <div
@@ -43,8 +46,9 @@ export default function RootLayout({
           <Image
             width={1266}
             height={1211}
+            priority
             src="/docs-left.png"
-            className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+            className="relative z-0 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
             alt="docs left background"
             data-loaded="true"
           />
@@ -56,8 +60,9 @@ export default function RootLayout({
           <Image
             width={1833}
             height={1822}
+            priority
             src="/docs-right.png"
-            className="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+            className="relative z-0 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
             alt="docs right background"
             data-loaded="true"
           />
