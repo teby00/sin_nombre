@@ -7,16 +7,20 @@ import { revalidateTag } from 'next/cache';
 
 const token = cookies().get('session')?.value;
 
-export async function createPost(
-  data: InferInput<typeof OnlyContenidoSchema>
+export async function createComentario(
+  data: InferInput<typeof OnlyContenidoSchema>,
+  id: string
 ): Promise<string | void> {
-  const response = await fetch(process.env.BACKEND_URL! + 'publicaciones/', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    process.env.BACKEND_URL! + 'comentarios/' + id + '/',
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   if (!response.ok) {
     if (response.status === 401) {
@@ -28,5 +32,5 @@ export async function createPost(
     return 'Error inesperado.';
   }
 
-  revalidateTag('posts');
+  revalidateTag(`post-${id}`);
 }
