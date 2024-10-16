@@ -24,6 +24,12 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  if (request.nextUrl.pathname === '/dashboard/users') {
+    if (verifyToken.rol !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/404', request.url));
+    }
+  }
+
   return NextResponse.next({
     request: {
       headers: requestHeaders,

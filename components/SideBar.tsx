@@ -3,15 +3,31 @@
 import { logout } from '@/lib/actions/navbar';
 import { Button } from '@nextui-org/button';
 import { Listbox, ListboxItem } from '@nextui-org/listbox';
-import { Bell, BookMarked, Download, HelpCircle, Users } from 'lucide-react';
+import { Tooltip } from '@nextui-org/tooltip';
+import {
+  Bell,
+  BookMarked,
+  Download,
+  HelpCircle,
+  Home,
+  Users,
+} from 'lucide-react';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
-export default function SideBar() {
+export default function SideBar({ isAdmin }: { isAdmin: boolean }) {
   const router = useRouter();
   const path = usePathname();
   return (
     <nav className="fixed flex flex-col z-20 left-0 h-full w-[300px] bg-[#18181b99] shadow rounded-lg py-4 px-8">
-      <h1 className="text-2xl font-bold pb-4">Dashboard</h1>
+      <div className="flex justify-between items-center pb-4">
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <Tooltip content="Ir a inicio">
+          <Button as={Link} href="/" isIconOnly variant="light">
+            <Home />
+          </Button>
+        </Tooltip>
+      </div>
 
       <Listbox
         variant="flat"
@@ -28,13 +44,17 @@ export default function SideBar() {
         >
           Notificaciones
         </ListboxItem>
-        <ListboxItem
-          aria-selected={path === '/dashboard/users'}
-          key="/dashboard/users"
-          startContent={<Users size={20} />}
-        >
-          Usuarios
-        </ListboxItem>
+        {isAdmin ? (
+          <ListboxItem
+            aria-selected={path === '/dashboard/users'}
+            key="/dashboard/users"
+            startContent={<Users size={20} />}
+          >
+            Usuarios
+          </ListboxItem>
+        ) : (
+          <></>
+        )}
         <ListboxItem
           aria-selected={path === '/dashboard/preguntas'}
           key="/dashboard/preguntas"

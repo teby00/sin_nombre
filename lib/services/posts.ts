@@ -8,7 +8,7 @@ export interface Imagen {
   imagen: string;
 }
 
-interface Post {
+export interface Post {
   id: number;
   contenido: string;
   fecha: string;
