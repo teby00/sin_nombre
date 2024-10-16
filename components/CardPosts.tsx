@@ -18,15 +18,20 @@ interface PostsProps {
   imagen?: Imagen[] | null;
   userId: string | null;
   footer?: React.ReactNode;
+  showDropdown?: boolean;
+  deleteAction?: (id: number) => Promise<string | void>;
 }
 
 export default function CardPosts({
+  id,
   usuario,
   fecha,
   contenido,
   imagen,
   userId,
   footer,
+  showDropdown = true,
+  deleteAction,
 }: PostsProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi);
@@ -40,7 +45,14 @@ export default function CardPosts({
             {DateTime.fromISO(fecha).toRelative()}
           </span>
         </div>
-        <CardDropdown userId={userId} postUserId={usuario.id.toString()} />
+        {showDropdown && (
+          <CardDropdown
+            userId={userId}
+            id={id}
+            postUserId={usuario.id.toString()}
+            deleteAction={deleteAction}
+          />
+        )}
       </CardHeader>
       <CardBody className="space-y-4">
         <p>{contenido}</p>
