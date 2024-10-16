@@ -8,16 +8,15 @@ import Link from 'next/link';
 export default async function Home() {
   const { id: userId } = getSession();
   const { data, error } = await getPosts();
-  console.log(data);
 
   return (
-    <div className="flex flex-col items-center min-h-screen pt-8 gap-8">
+    <div className="flex flex-col items-center min-h-screen pt-8 mb-36 gap-8">
       <PostForm />
       {data?.map((post) => (
-        <Link key={post.id} href={`/post/${post.id}`}>
+        <Link scroll={true} key={post.id} href={`/post/${post.id}`}>
           <CardPosts
             id={post.id}
-            username={post.usuario.username}
+            usuario={post.usuario}
             contenido={post.contenido}
             fecha={post.fecha}
             imagen={post.imagen}

@@ -40,3 +40,21 @@ export const PreguntaFrecuenteSchema = object({
     nonEmpty('La respuesta es requerida')
   ),
 });
+
+export const ArticuloSchema = object({
+  titulo: pipe(
+    string('El titulo es requerido'),
+    nonEmpty('El titulo es requerido')
+  ),
+  contenido: pipe(
+    string('El contenido es requerido'),
+    nonEmpty('El contenido es requerido')
+  ),
+});
+
+export const ArchivoSchema = object({
+  descripcion: pipe(
+    string('El descripcion es requerido'),
+    nonEmpty('El descripcion es requerido')
+  ),
+});

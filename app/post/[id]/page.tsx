@@ -14,6 +14,7 @@ export default async function Post({ params }: { params: { id: string } }) {
         <CardPosts
           id={data.id}
           username={data.usuario.username}
+          imagen={data.imagen}
           contenido={data.contenido}
           fecha={data.fecha}
           userId={userId}

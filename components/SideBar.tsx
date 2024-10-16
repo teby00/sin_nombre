@@ -3,7 +3,7 @@
 import { logout } from '@/lib/actions/navbar';
 import { Button } from '@nextui-org/button';
 import { Listbox, ListboxItem } from '@nextui-org/listbox';
-import { Bell, HelpCircle, Users } from 'lucide-react';
+import { Bell, BookMarked, Download, HelpCircle, Users } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function SideBar() {
@@ -41,6 +41,20 @@ export default function SideBar() {
           startContent={<HelpCircle size={20} />}
         >
           Preguntas Frecuentes
+        </ListboxItem>
+        <ListboxItem
+          aria-selected={path === '/dashboard/blog'}
+          key="/dashboard/blog"
+          startContent={<BookMarked size={20} />}
+        >
+          Blog
+        </ListboxItem>
+        <ListboxItem
+          aria-selected={path === '/dashboard/descargas'}
+          key="/dashboard/descargas"
+          startContent={<Download size={20} />}
+        >
+          Descargas
         </ListboxItem>
       </Listbox>
       <Button onPress={() => logout()} className="w-full" variant="light">
