@@ -26,9 +26,10 @@ export default function PopDelete({
     const error = await action(id);
     if (!error) {
       toast.success(
-        text + conection === 'masculino'
-          ? ' eliminado'
-          : ' eliminada' + ' exitosamente'
+        `${text} ${
+          conection === 'masculino' ? ' eliminado' : ' eliminada'
+        } exitosamente
+      `
       );
       setIsOpen(false);
       setIsLoading(false);
