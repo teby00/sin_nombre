@@ -26,6 +26,7 @@ export default async function Home() {
                 <MessageCircle size={24} /> {post.num_comentarios}
               </span>
             }
+            showDropdown={false}
           />
         </Link>
       ))}

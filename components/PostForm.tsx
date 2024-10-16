@@ -13,7 +13,7 @@ import { valibotResolver } from '@hookform/resolvers/valibot';
 import { OnlyContenidoSchema } from '@/lib/schemas';
 import { InferInput } from 'valibot';
 
-import { createPost } from '@/lib/actions/root';
+import { createPost } from '@/lib/actions/posts';
 import ImagePreview from './ImagePreview';
 
 export default function PostForm() {

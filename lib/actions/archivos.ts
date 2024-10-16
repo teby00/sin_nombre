@@ -28,15 +28,17 @@ export async function addArchivo(data: FormData) {
 }
 
 export async function editArchivo(id: number, data: FormData) {
-  console.log(data);
   try {
-    const response = await fetch(process.env.BACKEND_URL! + `archivos/${id}/`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: data,
-    });
+    const response = await fetch(
+      process.env.BACKEND_URL! + `archivos/edit/${id}/`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: data,
+      }
+    );
     if (!response.ok) {
       if (response.status === 404) {
         return 'Archivo no encontrado.';

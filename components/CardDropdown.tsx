@@ -8,13 +8,18 @@ import {
 } from '@nextui-org/dropdown';
 import { Ellipsis } from 'lucide-react';
 export default function CardDropdown({
+  id,
   userId,
   postUserId,
+  deleteAction,
 }: {
+  id: number;
   userId: string | null;
   postUserId: string | null;
+  deleteAction?: (id: number) => Promise<string | void>;
 }) {
   if (userId !== postUserId) return null;
+  if (!deleteAction) return null;
 
   return (
     <Dropdown>
@@ -23,9 +28,14 @@ export default function CardDropdown({
           <Ellipsis />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
+      <DropdownMenu aria-label="Actions">
         <DropdownItem key="edit">Editar</DropdownItem>
-        <DropdownItem key="delete" className="text-danger" color="danger">
+        <DropdownItem
+          onPress={() => deleteAction(id)}
+          key="delete"
+          className="text-danger"
+          color="danger"
+        >
           Eliminar
         </DropdownItem>
       </DropdownMenu>
