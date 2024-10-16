@@ -3,9 +3,8 @@
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
-const token = cookies().get('session')?.value;
-
 export async function addArticulo(formData: FormData) {
+  const token = cookies().get('session')?.value;
   try {
     const response = await fetch(process.env.BACKEND_URL! + 'articulos/', {
       method: 'POST',
@@ -28,11 +27,12 @@ export async function addArticulo(formData: FormData) {
 }
 
 export async function editArticulo(id: number, data: FormData) {
+  const token = cookies().get('session')?.value;
   try {
     const response = await fetch(
-      process.env.BACKEND_URL! + `articulos/${id}/`,
+      process.env.BACKEND_URL! + `articulos/edit/${id}/`,
       {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,9 +57,10 @@ export async function editArticulo(id: number, data: FormData) {
 }
 
 export async function deleteArticulo(id: number) {
+  const token = cookies().get('session')?.value;
   try {
     const response = await fetch(
-      process.env.BACKEND_URL! + `articulos/${id}/`,
+      process.env.BACKEND_URL! + `articulos/delete/${id}/`,
       {
         method: 'DELETE',
         headers: {
