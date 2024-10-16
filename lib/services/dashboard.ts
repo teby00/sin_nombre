@@ -10,7 +10,7 @@ enum NotificacionType {
 interface Notificaciones {
   id: number;
   tipo: NotificacionType;
-  publicacion: number;
+  publicacion: { id: number };
   de: Usuario;
   para: Usuario;
   fecha: string;
