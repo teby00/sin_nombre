@@ -3,10 +3,6 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'nextui.org',
-      },
-      {
         protocol: 'http',
         hostname: '127.0.0.1',
       },

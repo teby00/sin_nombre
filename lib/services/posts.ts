@@ -28,14 +28,18 @@ interface PostDetalle extends Omit<Post, 'comentarios'> {
   comentarios: Comentarios[];
 }
 
-export async function getPosts(): Promise<{
+export async function getPosts(q?: string): Promise<{
   data: Post[] | null;
   error: string | null;
 }> {
   try {
-    const response = await fetch(process.env.BACKEND_URL! + 'publicaciones/', {
-      next: { tags: ['posts'] },
-    });
+    const query = q ? `?q=${q}` : '';
+    const response = await fetch(
+      process.env.BACKEND_URL! + 'publicaciones/' + query,
+      {
+        next: { tags: ['posts'] },
+      }
+    );
     if (!response.ok) {
       return {
         data: null,

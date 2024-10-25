@@ -46,7 +46,7 @@ export default function FormComentarios({ id }: { id: string }) {
   };
 
   return (
-    <Card className="w-[600px]">
+    <Card className="w-full md:w-[600px]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody className="flex flex-row gap-1">
           <Input

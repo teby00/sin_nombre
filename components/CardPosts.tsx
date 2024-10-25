@@ -36,13 +36,13 @@ export default function CardPosts({
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const { selectedSnap, snapCount } = useSelectedSnapDisplay(emblaApi);
   return (
-    <Card className="w-[600px] bg-opacity-60">
+    <Card className="w-full sm:w-[600px] bg-opacity-60">
       <CardHeader className="justify-between">
         <div className="flex items-center">
           <span>@{usuario.username}</span>
           <Dot />
           <span className="text-sm">
-            {DateTime.fromISO(fecha).toRelative()}
+            {DateTime.fromISO(fecha).toRelative({ locale: 'es' })}
           </span>
         </div>
         {showDropdown && (
@@ -66,6 +66,7 @@ export default function CardPosts({
                     className="flex-shrink-0 flex-grow-0 basis-full min-w-0"
                   >
                     <Image
+                      priority
                       key={img.imagen}
                       src={process.env.NEXT_PUBLIC_BACKEND_MEDIA + img.imagen}
                       alt="imagen"
