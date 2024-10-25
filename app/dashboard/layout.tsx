@@ -10,7 +10,7 @@ export default async function DashboardLayout({
   return (
     <div className="relative z-10">
       <SideBar isAdmin={isAdmin} />
-      <main className="ml-[300px] py-8 px-10">{children}</main>
+      <main className="ml-[50px] md:ml-[300px] py-8 px-10">{children}</main>
     </div>
   );
 }

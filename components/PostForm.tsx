@@ -68,7 +68,7 @@ export default function PostForm() {
   );
 
   return (
-    <Card className="w-[600px]">
+    <Card className="w-full max-w-[600px]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardBody className="pb-0 space-y-2">
           <Textarea

@@ -11,7 +11,7 @@ export default async function Post({ params }: { params: { id: string } }) {
   const { data, error } = await getOnePost(params.id);
 
   return (
-    <div className="flex flex-col items-center min-h-screen pt-8 mb-40 gap-4">
+    <div className="flex flex-col items-center min-h-screen pt-8 mb-40 px-4 gap-4">
       {data && (
         <CardPosts
           id={data.id}
@@ -25,7 +25,7 @@ export default async function Post({ params }: { params: { id: string } }) {
       )}
       <FormComentarios id={params.id} />
       {data?.comentarios && data?.comentarios?.length > 0 && (
-        <div className="w-[600px] space-y-4">
+        <div className="w-full md:w-[600px] space-y-4">
           <h3 className="w-full text-start text-xl font-semibold">
             Comentarios
           </h3>

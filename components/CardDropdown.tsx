@@ -29,7 +29,6 @@ export default function CardDropdown({
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Actions">
-        <DropdownItem key="edit">Editar</DropdownItem>
         <DropdownItem
           onPress={() => deleteAction(id)}
           key="delete"

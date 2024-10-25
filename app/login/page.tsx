@@ -1,5 +1,6 @@
 import { Link } from '@nextui-org/link';
 import LoginForm from './client.form';
+import { ShieldQuestion } from 'lucide-react';
 
 export default async function Login() {
   return (
@@ -8,6 +9,7 @@ export default async function Login() {
       style={{ height: 'calc(100vh - 120px)' }}
     >
       <div className="w-[300px] flex flex-col">
+        <ShieldQuestion size={56} className="mx-auto mb-20 text-primary-500" />
         <h1 className="text-3xl font-semibold mb-6 text-center">
           Iniciar Sesión
         </h1>

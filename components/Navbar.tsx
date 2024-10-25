@@ -12,12 +12,17 @@ import {
   NavbarMenuToggle,
 } from '@nextui-org/navbar';
 import { Button } from '@nextui-org/button';
-import { MessageCircleQuestion, Bot, MonitorCog } from 'lucide-react';
+import {
+  MessageCircleQuestion,
+  MonitorCog,
+  ShieldQuestion,
+} from 'lucide-react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { logout } from '@/lib/actions/navbar';
+import SearchForm from './SearchForm';
 
 interface Props {
   session: {
@@ -45,16 +50,9 @@ export default function Nav({ session }: Props) {
   };
 
   const menuItems = [
-    'Profile',
-    'Dashboard',
-    'Activity',
-    'Analytics',
-    'System',
-    'Deployments',
-    'My Settings',
-    'Team Settings',
-    'Help & Feedback',
-    'Log Out',
+    { name: 'Inicio', href: '/' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Descargas', href: '/descargas' },
   ];
 
   return (
@@ -65,8 +63,8 @@ export default function Nav({ session }: Props) {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link href="/">
-            <Bot size={36} />
+          <Link aria-label="Ir a inicio" href="/">
+            <ShieldQuestion size={36} />
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -97,6 +95,9 @@ export default function Nav({ session }: Props) {
           </Link>
         </NavbarItem>
       </NavbarContent>
+
+      {path === '/' && <SearchForm />}
+
       <NavbarContent justify="end">
         {session.isAuth ? (
           <>
@@ -108,6 +109,7 @@ export default function Nav({ session }: Props) {
             {session.isStaff ? (
               <NavbarItem>
                 <Button
+                  aria-label="Ir a panel de administración"
                   as={Link}
                   isIconOnly
                   color="primary"
@@ -120,10 +122,11 @@ export default function Nav({ session }: Props) {
             ) : (
               <NavbarItem>
                 <Button
+                  aria-label="Iniciar chat"
                   as={Link}
                   isIconOnly
                   color="primary"
-                  href="/register"
+                  href="/chat"
                   variant="shadow"
                 >
                   <MessageCircleQuestion />
@@ -144,24 +147,24 @@ export default function Nav({ session }: Props) {
           </>
         )}
       </NavbarContent>
-      <NavbarMenu>
+
+      <NavbarMenu aria-label="Lista de enlaces de navegacion">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              color={
-                index === 2
-                  ? 'primary'
-                  : index === menuItems.length - 1
-                  ? 'danger'
-                  : 'foreground'
-              }
-              className="w-full"
-              href="#"
-            >
-              {item}
+            <Link className="w-full" href={item.href}>
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
+        <NavbarMenuItem>
+          <Button
+            onPress={handleLogOuth}
+            variant="light"
+            className="text-left pl-0 text-md"
+          >
+            Cerrar Sesión
+          </Button>
+        </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>
   );

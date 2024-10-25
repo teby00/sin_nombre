@@ -1,8 +1,8 @@
-import { LeftArrow } from '@/components/ui/icons';
 import { getOneArticulo } from '@/lib/services/blog';
 import { Link } from '@nextui-org/link';
 import Image from 'next/image';
 import { DateTime } from 'luxon';
+import { ChevronLeft } from 'lucide-react';
 
 export default async function Article({
   params,
@@ -12,11 +12,11 @@ export default async function Article({
   const { data, error } = await getOneArticulo(params.slug);
 
   return (
-    <div className="w-full mt-12 mb-36 flex flex-col justify-start items-center prose prose-neutral">
+    <div className="w-full mt-12 mb-36 px-4 flex flex-col justify-start items-center prose prose-neutral">
       <div className="w-full max-w-4xl">
         {error && <p className="text-red-500">{error}</p>}
         <Link className="mb-8" color="foreground" href="/blog">
-          <LeftArrow />
+          <ChevronLeft />
           Volver al blog
         </Link>
         <p className="text-sm text-default-500 mb-4">

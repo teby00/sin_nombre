@@ -1,21 +1,20 @@
 import { Button } from '@nextui-org/button';
 import { Card, CardBody } from '@nextui-org/card';
-import { Chip } from '@nextui-org/chip';
-import { FileText, DownloadCloud, Scale } from 'lucide-react';
+import { FileText, DownloadCloud } from 'lucide-react';
 import { getArchivos } from '@/lib/services/archivos';
 import Link from 'next/link';
 
 export default async function Descargas() {
   const { data, error } = await getArchivos();
   return (
-    <div className="w-full lg:px-16 mt-12">
+    <div className="w-full lg:px-16 mt-12 px-4">
       <div className="text-center">
         <h1 className="mb-2 font-bold text-4xl">Descargas</h1>
         <h5 className="text-default-500 text-lg">
           Aqui puedes descargar los archivos que necesites.
         </h5>
       </div>
-      <div className="mt-10 px-40 grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+      <div className="mt-10 md:px-40 grid gap-4 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         {error && <p className="text-red-500 text-center">{error}</p>}
         {data?.map((archivo) => (
           <Card key={archivo.id} className="bg-opacity-60">
@@ -26,9 +25,6 @@ export default async function Descargas() {
               <div className="flex flex-col gap-1">
                 <h4 className="font-bold text-large">{archivo.descripcion}</h4>
                 <span className="flex gap-2 items-center text-default-500">
-                  <Chip variant="bordered" startContent={<Scale size={16} />}>
-                    2 mb
-                  </Chip>
                   <Link
                     href={process.env.NEXT_PUBLIC_BACKEND_MEDIA! + archivo.file}
                   >

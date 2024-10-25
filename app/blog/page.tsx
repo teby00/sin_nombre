@@ -9,14 +9,14 @@ export default async function Blog() {
   const { data, error } = await getArticulos();
 
   return (
-    <div className="w-full lg:px-16 mb-20 mt-12">
+    <div className="w-full lg:px-16 mb-20 mt-12 px-4">
       <div className="text-center">
         <h1 className="mb-2 font-bold text-4xl">Últimas noticias</h1>
         <h5 className="text-default-500 text-lg">
           Mantente al tanto de las últimas noticias de ciberseguridad.
         </h5>
       </div>
-      <div className="mt-10 grid gap-4 px-40 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+      <div className="mt-10 grid gap-4 md:px-40 grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
         {data?.map((articulo) => (
           <Link key={articulo.id} href={`/blog/${articulo.slug}`}>
             <Card className="py-4 h-full">
@@ -24,7 +24,7 @@ export default async function Blog() {
                 {articulo.imagen ? (
                   <Image
                     alt="Card background"
-                    className="object-cover rounded-xl aspect-video"
+                    className="w-full object-cover rounded-xl aspect-video"
                     src={
                       process.env.NEXT_PUBLIC_BACKEND_MEDIA + articulo.imagen
                     }
